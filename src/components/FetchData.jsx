@@ -3,13 +3,13 @@ import SearchBar from './SearchBar'
 
 const FetchData = () => {
     
-
+    const apiKey = process.env.REACT_APP_RAPID_API_KEY; 
     const [allArticles, setArticles] = useState([])
     const [searchText, setText] = useState('')
     useEffect(() => {
        const getData = async () =>{
         try{
-            const reponse = await fetch(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchText}&api-key=eAakCNvEcIV5I0v6DneLt3aVNphmxBJ8`)
+            const reponse = await fetch(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchText}&api-key=${apiKey}`)
             const data = await reponse.json()
             setArticles(data.response.docs)
         }catch(error){
